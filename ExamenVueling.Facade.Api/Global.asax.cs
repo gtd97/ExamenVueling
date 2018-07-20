@@ -1,6 +1,9 @@
-﻿using ExamenVueling.Common.Layer;
+﻿using ExamenVueling.Application.Services.Service;
+using ExamenVueling.Common.Layer;
+using ExamenVueling.Facade.Api.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -20,7 +23,11 @@ namespace ExamenVueling.Facade.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            // HttpClientService.getAll().Result;
+
+            ObtenerDatos controller = new ObtenerDatos();
+            controller.ObtenerClients(ConfigurationManager.AppSettings.Get("RutaApiExternaClientsPath").ToString());
+
+            //HttpClientService.getAll().Result;
         }
     }
 }
