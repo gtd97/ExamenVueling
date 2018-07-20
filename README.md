@@ -31,7 +31,17 @@ Es la única capa capaz de interactuar con la BBDD, a demás de contener sus pro
 #4.Common
 Y por último la capa Common, esta capa es la transversal de toda la arquitectura. Es utilizada para crear las Vueling Exceptions. 
 
-
-
 ![dddvueling](https://user-images.githubusercontent.com/37305728/43024733-6ca8515e-8c6f-11e8-904a-3d8e287e3ccc.png)
 
+
+
+#Patrones de diseño:
+Ha sido aplicado el patrón Facade, en la capa Web API, ya que facilita la gestión, separando el código complejo del cliente, y realiza todos los movimientos necesarios.
+
+
+#SOLID:
+Por ahora han sido aplicadas:
+	
+- **S:** Por ejemplo han sido separados en una clase todos los mappeos, para no mezclar repositorios con mappeos.
+
+- **O:** A la hora de hacer la interfaz de servicio, se ha realizado con genéricos, permitiendo hacer get, getall sin relevancia de que tipo sea.
