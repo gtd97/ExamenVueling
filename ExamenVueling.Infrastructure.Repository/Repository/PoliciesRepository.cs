@@ -1,6 +1,5 @@
 ﻿using ExamenVueling.Domain.Models;
 using ExamenVueling.Infrastructure.Repository.Contracts;
-using ExamenVueling.Infrastructure.Repository.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +10,8 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 {
     public class PoliciesRepository : IRepository<PoliciesEntity>
     {
-        ExamenVuelingEntities db = new ExamenVuelingEntities();
 
-        public PoliciesEntity Add(PoliciesEntity model)
+        public List<PoliciesEntity> Add(List<PoliciesEntity> model)
         {
             throw new NotImplementedException();
         }

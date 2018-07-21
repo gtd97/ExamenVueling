@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamenVueling.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace ExamenVueling.Infrastructure.Repository.Contracts
         List<T> GetAll();
         T GetById(int id);
         T GetByName(string name);
-        T Add(T model);
+        List<T> Add(List<T> model);
     }
 }

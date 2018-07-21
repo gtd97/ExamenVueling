@@ -1,5 +1,5 @@
-﻿using ExamenVueling.Domain.Models;
-using ExamenVueling.Infrastructure.Repository.DataModel;
+﻿using ExamenVueling.Application.Dto;
+using ExamenVueling.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +9,15 @@ using System.Threading.Tasks;
 namespace ExamenVueling.Infrastructure.Repository.Mappers
 {
     public class MapperInfrastructureClients
-    {
-        /// <summary>
-        /// Clients the data model to client entity.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns></returns>
-        public static ClientsEntity ClientDataModelToClientEntity(Clients model)
+    { 
+        public static ClientsEntity ClientDataModelToClientEntity(ClientsDto model)
         {
             ClientsEntity clientEntity = new ClientsEntity(model.id, model.nombre, model.email, model.role);
 
             return clientEntity;
         }
 
-        /// <summary>
-        /// Clients the data model to client entity.
-        /// </summary>
-        /// <param name="listaClientsDataModel">The lista clients data model.</param>
-        /// <returns></returns>
-        public static List<ClientsEntity> ClientDataModelToClientEntity(List<Clients> listaClientsDataModel)
+        public static List<ClientsEntity> ClientDataModelToClientEntity(List<ClientsDto> listaClientsDataModel)
         {
             List<ClientsEntity> listaClientsEntity = new List<ClientsEntity>();
 

@@ -20,23 +20,9 @@ namespace ExamenVueling.Application.Services.Service
 {
     public class ObtenerDatos
     {
-        private readonly IRepository<ClientsEntity> iRepository;
-
-        public ObtenerDatos() : this(new ClientsRepository())
-        {
-        }
-
-        public ObtenerDatos(ClientsRepository clientsRepository)
-        {
-            this.iRepository = clientsRepository;
-        }
-
-
-
         public async void ObtenerClients(string url)
         {
             HttpClient httpClients = new HttpClient();
-
             List<ClientsEntity> listado = new List<ClientsEntity>();
 
             try
@@ -47,50 +33,57 @@ namespace ExamenVueling.Application.Services.Service
                 {
                     var JsonString = await response.Content.ReadAsStringAsync();
                     DataSet deserialized = JsonConvert.DeserializeObject<DataSet>(JsonString);
-
                     DataTable dataTable = deserialized.Tables["Clients"];
 
-                    /*
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        //Guid originalGuid = Guid.ParseExact(row["id"].ToString(), "D");
-                        ClientsDto clientDto = new ClientsDto( Guid.Parse(row["id"].ToString()), row["name"].ToString(), row["email"].ToString(), row["role"].ToString());
-
-                        listado.Add(iRepository.Add(MapperApplicationClients.ClientDtoToClientEntity(clientDto)));
+                        ClientsDto clientDto = new ClientsDto(row["id"].ToString(), row["name"].ToString(), row["email"].ToString(), row["role"].ToString());
+                        listado.Add(MapperApplicationClients.ClientDtoToClientEntity(clientDto));
                     }
-                    */
 
-                    var jObject = JObject.Parse(JsonString);
-                    var jToken = jObject.GetValue("clients");
-                    //listado = deserialized;
-                    
-
-                    using (TextWriter fichero = new StreamWriter($"C:/Users/formacion/source/repos/ExamenVueling/Logs/texto.json"))
-                    {
-                        for(int n = 0; n < jToken.Count(); n++ )
-                        { 
-                            fichero.WriteLine(jToken[n]);
-                        }
-                    }
-                    
+                    PersistirDatosRepository.PersistirDatosClients(listado);
                 }
             }
             catch (VuelingExceptions ex)
             {
                 throw ex;
             }
+        }
 
-            /*
-            if( listado != null)
+
+
+        public async void ObtenerPolicies(string url)
+        {
+            HttpClient httpClients = new HttpClient();
+            List<PoliciesEntity> listado;
+
+            try
             {
-                foreach(var cliente in listado)
+                HttpResponseMessage response = httpClients.GetAsync(url).Result;
+
+                if (response.IsSuccessStatusCode)
                 {
-                    iRepository.Add(cliente);
+                    var JsonString = await response.Content.ReadAsStringAsync();
+                    DataSet deserialized = JsonConvert.DeserializeObject<DataSet>(JsonString);
+                    DataTable dataTablePolicies = deserialized.Tables["Policies"];
+
+                    listado = new List<PoliciesEntity>();
+                    foreach (DataRow rowPolicies in dataTablePolicies.Rows)
+                    {
+                        PoliciesDto policiesDto = new PoliciesDto(rowPolicies["id"].ToString(), Double.Parse(rowPolicies["amountInsured"].ToString()), rowPolicies["email"].ToString(), DateTime.Parse(rowPolicies["inceptionDate"].ToString()), Boolean.Parse(rowPolicies["installmentPayment"].ToString()), rowPolicies["clientId"].ToString());
+                        listado.Add(MapperApplicationPolicies.PoliciesDtoToPoliciesEntity(policiesDto));
+                    }
+
+                    PersistirDatosRepository.PersistirDatosPolicies(listado);
                 }
             }
-            */
-            
+            catch (VuelingExceptions ex)
+            {
+                throw ex;
+            }
         }
-        
+
+
+
     }
 }

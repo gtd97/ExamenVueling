@@ -8,32 +8,24 @@ namespace ExamenVueling.Domain.Models
 {
     public class PoliciesEntity
     {
-        public int Id { get; set; }
-        public string AmountInsured { get; set; }
-        public string Email { get; set; }
-        public string InceptionDate { get; set; }
-        public bool InstallmentPayment { get; set; }
-        public int ClientId { get; set; }
+        public string id { get; set; }
+        public double amountInsured { get; set; }
+        public string email { get; set; }
+        public DateTime inceptionDate { get; set; }
+        public bool installmentPayment { get; set; }
+        public string clientId { get; set; }
 
         public PoliciesEntity() { }
 
-        public PoliciesEntity(string amountInsured, string email, string inceptionDate, bool installmentPayment, int clientId)
+        public PoliciesEntity(string id, double amountInsured, string email, DateTime inceptionDate, bool installmentPayment, string clientId)
         {
-            this.AmountInsured = amountInsured;
-            this.Email = email;
-            this.InceptionDate = inceptionDate;
-            this.InstallmentPayment = installmentPayment;
-            this.ClientId = clientId;
+            this.id = id;
+            this.amountInsured = amountInsured;
+            this.email = email;
+            this.inceptionDate = inceptionDate;
+            this.installmentPayment = installmentPayment;
+            this.clientId = clientId;
         }
 
-        public PoliciesEntity(int id, string amountInsured, string email, string inceptionDate, bool installmentPayment, int clientId)
-        {
-            this.Id = id;
-            this.AmountInsured = amountInsured;
-            this.Email = email;
-            this.InceptionDate = inceptionDate;
-            this.InstallmentPayment = installmentPayment;
-            this.ClientId = clientId;
-        }
     }
 }
