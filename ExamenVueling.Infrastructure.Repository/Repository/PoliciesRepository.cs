@@ -11,7 +11,7 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
     public class PoliciesRepository : IRepository<PoliciesEntity>
     {
 
-        public List<PoliciesEntity> Add(List<PoliciesEntity> model)
+        public PoliciesEntity Add(PoliciesEntity model)
         {
             throw new NotImplementedException();
         }
@@ -21,7 +21,7 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
             throw new NotImplementedException();
         }
 
-        public PoliciesEntity GetById(int id)
+        public PoliciesEntity GetById(string id)
         {
             throw new NotImplementedException();
         }
@@ -30,5 +30,6 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
         {
             throw new NotImplementedException();
         }
+
     }
 }

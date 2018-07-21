@@ -41,22 +41,20 @@ namespace ExamenVueling.Application.Services.Service
 
         public List<ClientsDto> GetAll()
         {
-            throw new NotImplementedException();
+            List<ClientsEntity> lista = iRepository.GetAll();
+            return MapperApplicationClients.ClientEntityToClientDto(lista);
         }
 
-        public ClientsDto GetById(Guid id)
+        public ClientsDto GetById(string id)
         {
-            throw new NotImplementedException();
+            ClientsEntity client = iRepository.GetById(id);
+            return MapperApplicationClients.ClientEntityToClientDto(client);
         }
 
-        public ClientsDto GetById(string name)
+        public ClientsDto GetByName(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        public ClientsDto GetById(int id)
-        {
-            throw new NotImplementedException();
+            ClientsEntity client = iRepository.GetByName(name);
+            return MapperApplicationClients.ClientEntityToClientDto(client);
         }
 
         public ClientsDto Update(ClientsDto model)

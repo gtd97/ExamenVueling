@@ -11,7 +11,7 @@ namespace ExamenVueling.Application.Services.Contracts
         T Add(T model);
         T Update(T model);
         List<T> GetAll();
-        T GetById(Guid id);
-        T GetById(string name);
+        T GetByName(string name);
+        T GetById(string id);
     }
 }

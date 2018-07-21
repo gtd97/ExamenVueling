@@ -10,33 +10,43 @@ namespace ExamenVueling.Application.Services.Mappers
 {
     public class MapperApplicationClients
     {
-        /// <summary>
-        /// Clients the dto to client entity.
-        /// </summary>
-        /// <param name="clientDto">The client dto.</param>
-        /// <returns></returns>
+
         public static ClientsEntity ClientDtoToClientEntity(ClientsDto clientDto)
         {
             ClientsEntity clientEntity = new ClientsEntity(clientDto.id, clientDto.nombre, clientDto.email, clientDto.role);
             return clientEntity;
         }
 
-
-        /// <summary>
-        /// Clients the dto to client entity.
-        /// </summary>
-        /// <param name="listaClientsDto">The lista clients dto.</param>
-        /// <returns></returns>
         public static List<ClientsEntity> ClientDtoToClientEntity(List<ClientsDto> listaClientsDto)
         {
             List<ClientsEntity> listaClientsEntity = new List<ClientsEntity>();
 
-            foreach (var client in listaClientsDto)
+            foreach (var clientDto in listaClientsDto)
             {
-                listaClientsEntity.Add(ClientDtoToClientEntity(client));
+                listaClientsEntity.Add(ClientDtoToClientEntity(clientDto));
             }
 
             return listaClientsEntity;
+        }
+
+
+
+        public static ClientsDto ClientEntityToClientDto(ClientsEntity clientEntity)
+        {
+            ClientsDto clientDto = new ClientsDto(clientEntity.id, clientEntity.nombre, clientEntity.email, clientEntity.role);
+            return clientDto;
+        }
+
+        public static List<ClientsDto> ClientEntityToClientDto(List<ClientsEntity> listaClientsEntity)
+        {
+            List<ClientsDto> listaClientsDto = new List<ClientsDto>();
+
+            foreach (var clientEntity in listaClientsEntity)
+            {
+                listaClientsDto.Add(ClientEntityToClientDto(clientEntity));
+            }
+
+            return listaClientsDto;
         }
     }
 }

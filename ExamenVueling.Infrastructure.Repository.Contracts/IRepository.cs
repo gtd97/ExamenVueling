@@ -10,8 +10,8 @@ namespace ExamenVueling.Infrastructure.Repository.Contracts
     public interface IRepository<T>
     {
         List<T> GetAll();
-        T GetById(int id);
+        T GetById(string id);
         T GetByName(string name);
-        List<T> Add(List<T> model);
+        T Add(T model);
     }
 }
