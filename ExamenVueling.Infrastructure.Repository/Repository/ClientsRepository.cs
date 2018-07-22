@@ -15,17 +15,17 @@ using System.Xml.Linq;
 
 namespace ExamenVueling.Infrastructure.Repository.Repository
 {
-    public class ClientsRepository : IRepository<ClientsEntity>
+    public class ClientsRepository : IRepositoryClients<ClientsEntity>
     {
         //private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        XDocument xml;
+        XDocument xmlClients;
 
         public List<ClientsEntity> GetAll()
         {
-            xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
+            xmlClients = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
             List<ClientsEntity> listaClients = new List<ClientsEntity>();
             
-            var clients = from clientes in xml.Descendants("Clients")
+            var clients = from clientes in xmlClients.Descendants("Clients")
                           from client in clientes.Elements("Client")
                           select new { id = client.Attribute("Id").Value, nombre = client.Element("Nombre").FirstNode, email = client.Element("Email").FirstNode, role = client.Element("Role").FirstNode };
 
@@ -40,9 +40,9 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 
         public ClientsEntity GetById(string id)
         {
-            xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
+            xmlClients = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
 
-            var clients = from clientes in xml.Descendants("Clients")
+            var clients = from clientes in xmlClients.Descendants("Clients")
                           from client in clientes.Elements("Client")
                           where client.Attribute("Id").Value == id
                           select new { id = client.Attribute("Id").Value, nombre = client.Element("Nombre").FirstNode, email = client.Element("Email").FirstNode, role = client.Element("Role").FirstNode };
@@ -59,9 +59,9 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 
         public ClientsEntity GetByName(string name)
         {
-            xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
+            xmlClients = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
 
-            var clients = from clientes in xml.Descendants("Clients")
+            var clients = from clientes in xmlClients.Descendants("Clients")
                           from client in clientes.Elements("Client")
                           where client.Element("Nombre").Value == name
                           select new { id = client.Attribute("Id").Value, nombre = client.Element("Nombre").FirstNode, email = client.Element("Email").FirstNode, role = client.Element("Role").FirstNode };

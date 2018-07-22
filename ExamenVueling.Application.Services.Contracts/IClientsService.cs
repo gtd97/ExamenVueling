@@ -1,16 +1,15 @@
-﻿using ExamenVueling.Domain.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenVueling.Infrastructure.Repository.Contracts
+namespace ExamenVueling.Application.Services.Contracts
 {
-    public interface IRepository<T>
+    public interface IClientsService<T>
     {
         List<T> GetAll();
-        T GetById(string id);
         T GetByName(string name);
+        T GetById(string id);
     }
 }

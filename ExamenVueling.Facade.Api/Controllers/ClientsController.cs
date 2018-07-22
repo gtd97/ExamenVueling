@@ -12,17 +12,15 @@ using System.Web.Http;
 
 namespace ExamenVueling.Facade.Api.Controllers
 {
-    
-    public class WebApiController : ApiController
+    public class ClientsController : ApiController
     {
-        private readonly IService<ClientsDto> clientsService;
+        private readonly IClientsService<ClientsDto> clientsService;
 
-        // Con el this en el constructor, estamos creando un instancia, pero no haria un acomplamiento "falsa inyeccion de dependencias"
-        public WebApiController() : this(new WebApiService())
+        public ClientsController() : this(new WebApiClientService())
         {
         }
 
-        public WebApiController(WebApiService clientsService)
+        public ClientsController(WebApiClientService clientsService)
         {
             this.clientsService = clientsService;
         }
@@ -50,7 +48,8 @@ namespace ExamenVueling.Facade.Api.Controllers
             }
         }
 
-        // GET api/Clients/{id}
+        // GET api/Clients/id/{id}
+        [Route("api/Clients/id/{id}")]
         public IHttpActionResult Get(string id)
         {
             try
@@ -73,8 +72,8 @@ namespace ExamenVueling.Facade.Api.Controllers
         }
 
 
-        // GET api/Clients/{name}
-        [Route("api/Clients/{name}")]
+        // GET api/Clients/name/{name}
+        [Route("api/Clients/name/{name}")]
         public IHttpActionResult GetByName(string name)
         {
             try
@@ -95,6 +94,6 @@ namespace ExamenVueling.Facade.Api.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
         }
-
+        
     }
 }

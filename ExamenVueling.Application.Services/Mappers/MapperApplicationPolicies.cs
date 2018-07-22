@@ -28,5 +28,25 @@ namespace ExamenVueling.Application.Services.Mappers
 
             return listaPoliciesEntity;
         }
+        
+
+        public static PoliciesDto PoliciesEntityToPoliciesDto(PoliciesEntity policiesEntity)
+        {
+            PoliciesDto policiesDto = new PoliciesDto(policiesEntity.id, policiesEntity.amountInsured, policiesEntity.email, policiesEntity.inceptionDate, policiesEntity.installmentPayment, policiesEntity.clientId);
+            return policiesDto;
+        }
+
+
+        public static List<PoliciesDto> PoliciesEntityToPoliciesDto(List<PoliciesEntity> listaPoliciesEntity)
+        {
+            List<PoliciesDto> listaPoliciesDto = new List<PoliciesDto>();
+
+            foreach (var policies in listaPoliciesEntity)
+            {
+                listaPoliciesDto.Add(PoliciesEntityToPoliciesDto(policies));
+            }
+
+            return listaPoliciesDto;
+        }
     }
 }

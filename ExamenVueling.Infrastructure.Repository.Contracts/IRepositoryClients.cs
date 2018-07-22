@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenVueling.Application.Services.Contracts
+namespace ExamenVueling.Infrastructure.Repository.Contracts
 {
-    public interface IService<T>
+    public interface IRepositoryClients<T>
     {
         List<T> GetAll();
-        T GetByName(string name);
         T GetById(string id);
+        T GetByName(string name);
     }
 }
