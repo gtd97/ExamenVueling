@@ -18,29 +18,12 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
     public class ClientsRepository : IRepository<ClientsEntity>
     {
         //private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
-
-        public ClientsEntity Add(ClientsEntity modelo)
-        {
-            try
-            {
-                XDocument DocXML = XDocument.Load("DocXML.xml");
-                
-                return modelo;
-            }
-            catch (VuelingExceptions ex)
-            {
-                //Log.Error(ex);
-                throw new VuelingExceptions(ResourceMessage.DbUpdateConcurrencyException, ex);
-            }
-
-        }
+        XDocument xml;
 
         public List<ClientsEntity> GetAll()
         {
+            xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
             List<ClientsEntity> listaClients = new List<ClientsEntity>();
-
-            XDocument xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
             
             var clients = from clientes in xml.Descendants("Clients")
                           from client in clientes.Elements("Client")
@@ -57,26 +40,40 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 
         public ClientsEntity GetById(string id)
         {
-            XDocument xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
-            
+            xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
+
             var clients = from clientes in xml.Descendants("Clients")
                           from client in clientes.Elements("Client")
                           where client.Attribute("Id").Value == id
                           select new { id = client.Attribute("Id").Value, nombre = client.Element("Nombre").FirstNode, email = client.Element("Email").FirstNode, role = client.Element("Role").FirstNode };
 
-            ClientsEntity clientFind = null;
+            ClientsEntity clientFindById = null;
 
             foreach (var client in clients)
             {
-                clientFind = new ClientsEntity(client.id, client.nombre.ToString(), client.email.ToString(), client.role.ToString());
+                clientFindById = new ClientsEntity(client.id, client.nombre.ToString(), client.email.ToString(), client.role.ToString());
             }
 
-            return clientFind;
+            return clientFindById;
         }
 
         public ClientsEntity GetByName(string name)
         {
-            throw new NotImplementedException();
+            xml = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
+
+            var clients = from clientes in xml.Descendants("Clients")
+                          from client in clientes.Elements("Client")
+                          where client.Element("Nombre").Value == name
+                          select new { id = client.Attribute("Id").Value, nombre = client.Element("Nombre").FirstNode, email = client.Element("Email").FirstNode, role = client.Element("Role").FirstNode };
+
+            ClientsEntity clientFindByName = null;
+
+            foreach (var client in clients)
+            {
+                clientFindByName = new ClientsEntity(client.id, client.nombre.ToString(), client.email.ToString(), client.role.ToString());
+            }
+
+            return clientFindByName;
         }
     }
 }

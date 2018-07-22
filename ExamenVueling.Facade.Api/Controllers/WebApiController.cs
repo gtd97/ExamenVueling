@@ -12,16 +12,17 @@ using System.Web.Http;
 
 namespace ExamenVueling.Facade.Api.Controllers
 {
-    public class ClientsController : ApiController
+    
+    public class WebApiController : ApiController
     {
         private readonly IService<ClientsDto> clientsService;
 
         // Con el this en el constructor, estamos creando un instancia, pero no haria un acomplamiento "falsa inyeccion de dependencias"
-        public ClientsController() : this(new ClientsService())
+        public WebApiController() : this(new WebApiService())
         {
         }
 
-        public ClientsController(ClientsService clientsService)
+        public WebApiController(WebApiService clientsService)
         {
             this.clientsService = clientsService;
         }
@@ -49,7 +50,7 @@ namespace ExamenVueling.Facade.Api.Controllers
             }
         }
 
-        // GET: api/Clients/5
+        // GET api/Clients/{id}
         public IHttpActionResult Get(string id)
         {
             try
@@ -71,22 +72,29 @@ namespace ExamenVueling.Facade.Api.Controllers
             }
         }
 
-        // POST: api/Clients
-        public IHttpActionResult Post(ClientsDto value)
+
+        // GET api/Clients/{name}
+        [Route("api/Clients/{name}")]
+        public IHttpActionResult GetByName(string name)
         {
-            return Ok();
+            try
+            {
+                ClientsDto client = clientsService.GetByName(name);
+
+                if (client != null)
+                {
+                    return Ok(client);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (VuelingExceptions ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
         }
 
-        // PUT: api/Clients/5
-        public IHttpActionResult Put(string id, ClientsDto value)
-        {
-            return Ok();
-        }
-
-        // DELETE: api/Clients/5
-        public IHttpActionResult Delete(string id)
-        {
-            return Ok();
-        }
     }
 }

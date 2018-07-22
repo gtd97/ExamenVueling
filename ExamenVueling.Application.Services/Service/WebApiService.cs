@@ -12,32 +12,19 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Application.Services.Service
 {
-    public class ClientsService : IService<ClientsDto>
+    public class WebApiService : IService<ClientsDto>
     {
         private readonly IRepository<ClientsEntity> iRepository;
 
-        public ClientsService() : this(new ClientsRepository())
+        public WebApiService() : this(new ClientsRepository())
         {
         }
 
-        public ClientsService(ClientsRepository clientsRepository)
+        public WebApiService(ClientsRepository clientsRepository)
         {
             this.iRepository = clientsRepository;
         }
 
-
-
-
-        public ClientsDto Add(ClientsDto model)
-        {
-            ClientsDto client = new ClientsDto();
-            //ClientsDto client = iRepository.Add(model)
-            //ClientsDto client = iRepository.Add(MapperApplicationClients.ClientDtoToClientEntity(model));
-
-            return client;
-        }
-
-        
 
         public List<ClientsDto> GetAll()
         {
@@ -55,11 +42,6 @@ namespace ExamenVueling.Application.Services.Service
         {
             ClientsEntity client = iRepository.GetByName(name);
             return MapperApplicationClients.ClientEntityToClientDto(client);
-        }
-
-        public ClientsDto Update(ClientsDto model)
-        {
-            throw new NotImplementedException();
         }
 
     }

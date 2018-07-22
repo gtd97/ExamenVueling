@@ -12,6 +12,5 @@ namespace ExamenVueling.Infrastructure.Repository.Contracts
         List<T> GetAll();
         T GetById(string id);
         T GetByName(string name);
-        T Add(T model);
     }
 }

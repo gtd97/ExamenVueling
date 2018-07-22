@@ -8,8 +8,6 @@ namespace ExamenVueling.Application.Services.Contracts
 {
     public interface IService<T>
     {
-        T Add(T model);
-        T Update(T model);
         List<T> GetAll();
         T GetByName(string name);
         T GetById(string id);

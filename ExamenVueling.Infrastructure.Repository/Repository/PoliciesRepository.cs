@@ -10,12 +10,6 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 {
     public class PoliciesRepository : IRepository<PoliciesEntity>
     {
-
-        public PoliciesEntity Add(PoliciesEntity model)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<PoliciesEntity> GetAll()
         {
             throw new NotImplementedException();
