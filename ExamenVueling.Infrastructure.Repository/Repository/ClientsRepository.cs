@@ -75,5 +75,28 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 
             return clientFindByName;
         }
+
+        public ClientsEntity GetByNumPolicy(string id)
+        {
+            XDocument xmlClients = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlClients"));
+            XDocument xmlPolicies = XDocument.Load(ConfigurationManager.AppSettings.Get("XmlPolicies"));
+
+            string policies = (from policie in xmlPolicies.Descendants("Clients").Elements("Client")
+                               where policie.Attribute("Id").Value == id
+                               select policie.Element("ClientId").Value).First().ToString();
+
+
+            var clients = from clientes in xmlClients.Descendants("Clients").Elements("Client")
+                          where clientes.Attribute("Id").Value == policies
+                          select new { id = clientes.Attribute("Id").Value, nombre = clientes.Element("Nombre").FirstNode, email = clientes.Element("Email").FirstNode, role = clientes.Element("Role").FirstNode };
+
+            ClientsEntity clientFindByName = null;
+            foreach (var client in clients)
+            {
+                clientFindByName = new ClientsEntity(client.id, client.nombre.ToString(), client.email.ToString(), client.role.ToString());
+            }
+
+            return clientFindByName;
+        }
     }
 }

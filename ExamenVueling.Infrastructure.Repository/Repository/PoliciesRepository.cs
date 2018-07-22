@@ -42,7 +42,6 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
             foreach (var policie in policies)
             {
                 PoliciesEntity poliza = new PoliciesEntity(policie.id.ToString(), Double.Parse(policie.amountInsured.ToString()), policie.email.ToString(), DateTime.Parse(policie.inceptionDate.ToString()), Boolean.Parse(policie.installmentPayment.ToString()), policie.clientId.ToString());
-
                 listaPolizas.Add(poliza);
             }
 

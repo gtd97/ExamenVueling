@@ -11,5 +11,6 @@ namespace ExamenVueling.Application.Services.Contracts
         List<T> GetAll();
         T GetByName(string name);
         T GetById(string id);
+        T GetByPolicyNumber(string id);
     }
 }

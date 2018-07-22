@@ -11,5 +11,6 @@ namespace ExamenVueling.Infrastructure.Repository.Contracts
         List<T> GetAll();
         T GetById(string id);
         T GetByName(string name);
+        T GetByNumPolicy(string id);
     }
 }

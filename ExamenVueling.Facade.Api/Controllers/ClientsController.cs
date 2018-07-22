@@ -50,6 +50,7 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET api/Clients/id/{id}
         [Route("api/Clients/id/{id}")]
+        [HttpGet]
         public IHttpActionResult Get(string id)
         {
             try
@@ -74,6 +75,7 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET api/Clients/name/{name}
         [Route("api/Clients/name/{name}")]
+        [HttpGet]
         public IHttpActionResult GetByName(string name)
         {
             try
@@ -94,6 +96,31 @@ namespace ExamenVueling.Facade.Api.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
         }
-        
+
+
+        // GET api/Clients/ByPolicyNumber/{number}
+        [Route("api/Clients/ByPolicyNumber/{number}")]
+        [HttpGet]
+        public IHttpActionResult ClientByPolicyNumber(string number)
+        {
+            try
+            {
+                ClientsDto clientDto = clientsService.GetByPolicyNumber(number);
+
+                if (clientDto != null)
+                {
+                    return Ok(clientDto);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (VuelingExceptions ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+        }
+
     }
 }

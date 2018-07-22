@@ -44,5 +44,12 @@ namespace ExamenVueling.Application.Services.Service
             return MapperApplicationClients.ClientEntityToClientDto(client);
         }
 
+
+        public ClientsDto GetByPolicyNumber(string id)
+        {
+            ClientsEntity client = iRepositoryClients.GetByNumPolicy(id);
+            return MapperApplicationClients.ClientEntityToClientDto(client);
+        }
+
     }
 }
