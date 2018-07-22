@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace ExamenVueling.Facade.Api.Controllers
 {
+    [Authorize]
     public class PoliciesController : ApiController
     {
         private readonly IPoliciesService<PoliciesDto> policiesService;
@@ -26,6 +27,8 @@ namespace ExamenVueling.Facade.Api.Controllers
 
 
         // GET api/Policies/ListByNameClient/{name}
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
         [Route("api/Policies/ListByNameClient/{name}")]
         public IHttpActionResult GetListPoliciesByName(string name)
         {

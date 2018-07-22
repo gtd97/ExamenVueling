@@ -12,6 +12,7 @@ using System.Web.Http;
 
 namespace ExamenVueling.Facade.Api.Controllers
 {
+    [Authorize]
     public class ClientsController : ApiController
     {
         private readonly IClientsService<ClientsDto> clientsService;
@@ -27,6 +28,8 @@ namespace ExamenVueling.Facade.Api.Controllers
 
 
         // GET: api/Clients
+        [HttpGet]
+        //[Authorize(Roles = "admin, user")]
         public IHttpActionResult Get()
         {
             try
@@ -49,8 +52,9 @@ namespace ExamenVueling.Facade.Api.Controllers
         }
 
         // GET api/Clients/id/{id}
-        [Route("api/Clients/id/{id}")]
         [HttpGet]
+        //[Authorize(Roles = "admin, user")]
+        [Route("api/Clients/id/{id}")]
         public IHttpActionResult Get(string id)
         {
             try
@@ -74,8 +78,9 @@ namespace ExamenVueling.Facade.Api.Controllers
 
 
         // GET api/Clients/name/{name}
-        [Route("api/Clients/name/{name}")]
         [HttpGet]
+        //[Authorize(Roles = "admin, user")]
+        [Route("api/Clients/name/{name}")]
         public IHttpActionResult GetByName(string name)
         {
             try
@@ -99,8 +104,9 @@ namespace ExamenVueling.Facade.Api.Controllers
 
 
         // GET api/Clients/ByPolicyNumber/{number}
-        [Route("api/Clients/ByPolicyNumber/{number}")]
         [HttpGet]
+        //[Authorize(Roles = "admin")]
+        [Route("api/Clients/ByPolicyNumber/{number}")]
         public IHttpActionResult ClientByPolicyNumber(string number)
         {
             try

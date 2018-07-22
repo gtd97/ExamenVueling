@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamenVueling.Facade.Api.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,6 +14,9 @@ namespace ExamenVueling.Facade.Api
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
+
+            // Nuevo
+            config.MessageHandlers.Add(new TokenValidate());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

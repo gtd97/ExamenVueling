@@ -59,9 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\MapperInfrastructureAuthentification.cs" />
     <Compile Include="Mappers\MapperInfrastructureClients.cs" />
     <Compile Include="Mappers\MapperInfrastructurePolicies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AuthenticationRepository.cs" />
     <Compile Include="Repository\ClientsRepository.cs" />
     <Compile Include="Repository\PersistirDatosRepository.cs" />
     <Compile Include="Repository\PoliciesRepository.cs" />
