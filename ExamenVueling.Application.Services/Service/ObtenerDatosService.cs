@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Application.Services.Service
 {
-    public class ObtenerDatos
+    public class ObtenerDatosService
     {
         public async void ObtenerClients(string url)
         {

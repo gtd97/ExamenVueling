@@ -57,9 +57,9 @@
     <Compile Include="Mappers\MapperApplicationClients.cs" />
     <Compile Include="Mappers\MapperApplicationPolicies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\WebApiAuthentication.cs" />
+    <Compile Include="Service\WebApiAuthService.cs" />
     <Compile Include="Service\WebApiClientService.cs" />
-    <Compile Include="Service\ObtenerDatos.cs" />
+    <Compile Include="Service\ObtenerDatosService.cs" />
     <Compile Include="Service\WebApiPoliciesService.cs" />
   </ItemGroup>
   <ItemGroup>

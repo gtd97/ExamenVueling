@@ -28,7 +28,7 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET api/Policies/ListByNameClient/{name}
         [HttpGet]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [Route("api/Policies/ListByNameClient/{name}")]
         public IHttpActionResult GetListPoliciesByName(string name)
         {

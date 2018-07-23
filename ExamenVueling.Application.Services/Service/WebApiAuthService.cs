@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Application.Services.Service
 {
-    public class WebApiAuthentication : IAuthenticationService<UserDto>
+    public class WebApiAuthService : IAuthenticationService<UserDto>
     {
         private readonly IRepositoryAuthentication<UserEntity> iRepositoryUser;
 
-        public WebApiAuthentication() : this(new AuthenticationRepository())
+        public WebApiAuthService() : this(new AuthenticationRepository())
         {
         }
 
-        public WebApiAuthentication(AuthenticationRepository authenticationRepository)
+        public WebApiAuthService(AuthenticationRepository authenticationRepository)
         {
             this.iRepositoryUser = authenticationRepository;
         }

@@ -29,11 +29,9 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET: api/Clients
         [HttpGet]
-        //[Authorize(Roles = "admin, user")]
+        [Authorize(Roles = "admin, user")]
         public IHttpActionResult Get()
         {
-
-
             try
             {
                 List<ClientsDto> listaClients = clientsService.GetAll();
@@ -55,7 +53,7 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET api/Clients/id/{id}
         [HttpGet]
-        //[Authorize(Roles = "admin, user")]
+        [Authorize(Roles = "admin, user")]
         [Route("api/Clients/id/{id}")]
         public IHttpActionResult Get(string id)
         {
@@ -81,7 +79,7 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET api/Clients/name/{name}
         [HttpGet]
-        //[Authorize(Roles = "admin, user")]
+        [Authorize(Roles = "admin, user")]
         [Route("api/Clients/name/{name}")]
         public IHttpActionResult GetByName(string name)
         {
@@ -107,7 +105,7 @@ namespace ExamenVueling.Facade.Api.Controllers
 
         // GET api/Clients/ByPolicyNumber/{number}
         [HttpGet]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [Route("api/Clients/ByPolicyNumber/{number}")]
         public IHttpActionResult ClientByPolicyNumber(string number)
         {

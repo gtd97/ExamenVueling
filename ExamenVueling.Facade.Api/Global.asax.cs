@@ -26,9 +26,9 @@ namespace ExamenVueling.Facade.Api
 
 
             
-            ObtenerDatos controller = new ObtenerDatos();
-            controller.ObtenerClients(ConfigurationManager.AppSettings.Get("RutaApiExternaClientsPath").ToString());
-            controller.ObtenerPolicies(ConfigurationManager.AppSettings.Get("RutaApiExternaPoliciesPath").ToString());
+            //ObtenerDatos controller = new ObtenerDatos();
+            //controller.ObtenerClients(ConfigurationManager.AppSettings.Get("RutaApiExternaClientsPath").ToString());
+            //controller.ObtenerPolicies(ConfigurationManager.AppSettings.Get("RutaApiExternaPoliciesPath").ToString());
         }
     }
 }

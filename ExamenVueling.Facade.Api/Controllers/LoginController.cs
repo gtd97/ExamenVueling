@@ -17,11 +17,11 @@ namespace ExamenVueling.Facade.Api.Controllers
     {
         private readonly IAuthenticationService<UserDto> authenticationService;
 
-        public LoginController() : this(new WebApiAuthentication())
+        public LoginController() : this(new WebApiAuthService())
         {
         }
 
-        public LoginController(WebApiAuthentication authenticationService)
+        public LoginController(WebApiAuthService authenticationService)
         {
             this.authenticationService = authenticationService;
         }

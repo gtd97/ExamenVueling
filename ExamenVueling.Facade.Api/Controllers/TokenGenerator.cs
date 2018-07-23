@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -26,16 +27,18 @@ namespace ExamenVueling.Facade.Api.Controllers
 
             // create token to the user
             var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+            
             var jwtSecurityToken = tokenHandler.CreateJwtSecurityToken(
                 audience: audienceToken,
                 issuer: issuerToken,
-                //claims: claimsIdentity,
                 subject: claimsIdentity,
                 notBefore: DateTime.UtcNow,
                 expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),
-                signingCredentials: signingCredentials);
+                signingCredentials: signingCredentials
+            );
 
             var jwtTokenString = tokenHandler.WriteToken(jwtSecurityToken);
+
             return jwtTokenString;
         }
     }
