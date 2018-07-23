@@ -29,6 +29,7 @@ namespace ExamenVueling.Facade.Api.Controllers
             var jwtSecurityToken = tokenHandler.CreateJwtSecurityToken(
                 audience: audienceToken,
                 issuer: issuerToken,
+                //claims: claimsIdentity,
                 subject: claimsIdentity,
                 notBefore: DateTime.UtcNow,
                 expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),

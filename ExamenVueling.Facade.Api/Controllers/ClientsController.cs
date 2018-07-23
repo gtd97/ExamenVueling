@@ -32,6 +32,8 @@ namespace ExamenVueling.Facade.Api.Controllers
         //[Authorize(Roles = "admin, user")]
         public IHttpActionResult Get()
         {
+
+
             try
             {
                 List<ClientsDto> listaClients = clientsService.GetAll();
@@ -42,12 +44,12 @@ namespace ExamenVueling.Facade.Api.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
                 }
             }
             catch (VuelingExceptions ex)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                throw new VuelingExceptions("No se han podido obtener los clientes.", ex);
             }
         }
 
@@ -67,12 +69,12 @@ namespace ExamenVueling.Facade.Api.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
                 }
             }
             catch (VuelingExceptions ex)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                throw new VuelingExceptions("No se han podido obtener los clientes.", ex);
             }
         }
 
@@ -119,12 +121,12 @@ namespace ExamenVueling.Facade.Api.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
                 }
             }
             catch (VuelingExceptions ex)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                throw new VuelingExceptions("No se han podido obtener los clientes.", ex);
             }
         }
 

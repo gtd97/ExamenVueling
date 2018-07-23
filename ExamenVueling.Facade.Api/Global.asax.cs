@@ -24,6 +24,8 @@ namespace ExamenVueling.Facade.Api
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+
+            
             ObtenerDatos controller = new ObtenerDatos();
             controller.ObtenerClients(ConfigurationManager.AppSettings.Get("RutaApiExternaClientsPath").ToString());
             controller.ObtenerPolicies(ConfigurationManager.AppSettings.Get("RutaApiExternaPoliciesPath").ToString());
